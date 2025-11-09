@@ -1,0 +1,1 @@
+# caching layer (Redis) for queries/schemas

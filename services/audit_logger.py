@@ -1,0 +1,1 @@
+# records NL query, SQL, user, result sizes
