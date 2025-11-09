@@ -12,7 +12,6 @@ sqlalchemy==2.0.23
 # AI/ML
 vanna==0.5.5
 groq==0.3.0
-chromadb==0.4.15
 
 # Utilities
 httpx==0.25.2
