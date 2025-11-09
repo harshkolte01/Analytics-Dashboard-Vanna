@@ -7,7 +7,6 @@ import asyncio
 import json
 from typing import Dict, List, Optional, Any, Tuple
 import structlog
-from vanna.base import VannaBase
 from app.config import settings
 from .groq_client import GroqClient
 from .schema_provider import SchemaProvider
@@ -16,11 +15,11 @@ from .errors import SQLGenerationError, ValidationError
 logger = structlog.get_logger(__name__)
 
 
-class GroqVannaAdapter(VannaBase):
-    """Custom Vanna adapter that uses Groq for LLM operations"""
+class GroqVannaAdapter:
+    """Custom adapter that uses Groq for LLM operations"""
     
     def __init__(self, groq_client: GroqClient, config: Optional[Dict] = None):
-        VannaBase.__init__(self, config=config)
+        self.config = config or {}
         self.groq_client = groq_client
         
     def system_message(self, message: str) -> Any:
@@ -53,7 +52,7 @@ class GroqVannaAdapter(VannaBase):
             logger.error("Failed to submit prompt to Groq", error=str(e))
             raise SQLGenerationError(f"LLM prompt submission failed: {str(e)}")
     
-    # Required abstract methods from VannaBase
+    # Methods for compatibility (simplified implementations)
     def add_ddl(self, ddl: str) -> str:
         """Add DDL to training data (simplified implementation)"""
         return f"DDL added: {ddl[:100]}..."
